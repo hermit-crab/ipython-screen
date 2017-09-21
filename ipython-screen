@@ -1,0 +1,32 @@
+#!/bin/bash
+
+IPYTHON_BIN="${IPYTHON_BIN:-ipython}"
+
+SESSION_NAME="${IPYTHON_BIN##*/}"-screen
+
+# enable mouse scrolling and scroll bar history scrolling
+export SCREENRC=/tmp/ipython-screen-screenrc
+echo 'termcapinfo xterm* ti@:te@' > $SCREENRC
+
+# initial background session startup
+if [[ $1 == '-' ]]; then
+    screen -d -m -S "$SESSION_NAME" $IPYTHON_BIN
+    exit
+fi
+
+detached=`screen -ls | grep -P "\.$SESSION_NAME\s+\(Detached\)"`
+detached_count=`echo "$detached" | wc -l`
+to_attach=`echo "$detached" | head -n1 | cut -f2`
+
+if [[ -z $detached ]]; then
+    # spool 2 sessions
+    screen -d -m -S "$SESSION_NAME" $IPYTHON_BIN
+    screen -d -m -S "$SESSION_NAME" $IPYTHON_BIN
+elif [[ $detached_count == 1 ]]; then
+    # spool 1 additional session
+    screen -d -m -S "$SESSION_NAME" $IPYTHON_BIN
+fi
+
+# attach to existing session and change its cwd
+screen -r $to_attach -X stuff "cd \"$PWD\"\n"
+screen -r $to_attach
