@@ -6,9 +6,7 @@ Short script that wraps ipython call to be run under GNU Screen terminal multipl
 
 On startup it initializes two IPython sessions: one in foreground and another in background for the next use.
 
-Simply place it into one of your PATH directories or call directly.
-
-Accepts IPYTHON_BIN environment variable. Can be run as `ipython-screen -` to only initialize background session (for autostart).
+Simply place it into one of your PATH directories or call directly. Accepts IPYTHON_BIN environment variable. Can be run as `ipython-screen -` to only initialize background session (for autostart).
 
 Shortcut install: 
 ```bash
