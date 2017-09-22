@@ -1,6 +1,6 @@
 # ipython-screen
 Eliminate IPython startup time on Linux by having it run in Screen.
-
+***
 
 Short script that wraps ipython call to be run under GNU Screen terminal multiplexer.
 
