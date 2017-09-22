@@ -8,7 +8,7 @@ On startup it initializes two IPython sessions: one in foreground and another in
 
 Simply place it into one of your PATH directories or call directly.
 
-Accepts IPYTHON_BIN environment variable. Use `ipython-screen -` to only initialize background session (for autostart).
+Accepts IPYTHON_BIN environment variable. Can be run as `ipython-screen -` to only initialize background session (for autostart).
 
 Shortcut install: 
 ```bash
