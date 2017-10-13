@@ -5,8 +5,10 @@ IPYTHON_BIN="${IPYTHON_BIN:-ipython}"
 SESSION_NAME="${IPYTHON_BIN##*/}"-screen
 
 # enable mouse scrolling and scroll bar history scrolling
+# rebind the escape key from Ctrl-a to Ctrl-x to allow Ctrl-a usage
 export SCREENRC=/tmp/ipython-screen-screenrc
 echo 'termcapinfo xterm* ti@:te@' > $SCREENRC
+echo 'escape ^Xx' >> $SCREENRC
 
 # initial background session startup
 if [[ $1 == '-' ]]; then
